@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Signup() {
-    const [form, setForm] = useState({ email: "", password: "" });
+    const [form, setForm] = useState({ email: "", password: "", skills: "" });
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
@@ -64,6 +64,16 @@ export default function Signup() {
                         placeholder="Password"
                         className="input input-bordered"
                         value={form.password}
+                        onChange={handleChange}
+                        required
+                    />
+
+                    <input
+                        type="text"
+                        name="skills"
+                        placeholder="Skills (comma separated)"
+                        className="input input-bordered"
+                        value={form.skills}
                         onChange={handleChange}
                         required
                     />
