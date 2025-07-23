@@ -21,7 +21,11 @@ export default function Signup() {
                     headers: {
                         "Content-Type": "application/json",
                     },
-                    body: JSON.stringify(form),
+                    body: JSON.stringify({
+                        email: form.email,
+                        password: form.password,
+                        skills: form.skills.split(",").map((s) => s.trim()), // Optional 
+                    }),
                 }
             );
 
@@ -36,7 +40,7 @@ export default function Signup() {
             }
         } catch (err) {
             alert("Something went wrong");
-            console.error(err);
+            // console.error(err);
         } finally {
             setLoading(false);
         }
