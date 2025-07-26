@@ -35,7 +35,7 @@ export default function Navbar() {
                         <p>Hi, {user?.email}</p>
                         {user && user?.role === "admin" ? (
                             <Link to="/admin" className="btn btn-sm">
-                                Admin
+                                Admin Panel
                             </Link>
                         ) : null}
                         <button onClick={logout} className="btn btn-sm">

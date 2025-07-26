@@ -8,13 +8,24 @@ export default function Tickets() {
 
     const token = localStorage.getItem("token");
 
+    if (!token) {
+        alert("Please login");
+        return (
+            <div className="p-4 max-w-3xl mx-auto">
+                <h2 className="text-2xl font-bold mb-4">
+                    Please login to create a ticket
+                </h2>
+            </div>
+        );
+    }
+
     const fetchTickets = async () => {
         try {
             const res = await fetch(
                 `${import.meta.env.VITE_SERVER_URL}/tickets`,
                 {
-                    headers: { Authorization: `Bearer ${token}` },
                     method: "GET",
+                    headers: { Authorization: `Bearer ${token}` },
                 }
             );
             const data = await res.json();
@@ -48,7 +59,12 @@ export default function Tickets() {
                 }
             );
 
-            const data = await res.json();
+            let data;
+            try {
+                data = await res.json();
+            } catch (error) {
+                data = { message: "Invalid server response" };
+            }
 
             if (res.ok) {
                 setForm({ title: "", description: "" });
