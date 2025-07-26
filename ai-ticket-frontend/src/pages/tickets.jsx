@@ -114,9 +114,9 @@ export default function Tickets() {
             <div className="space-y-3">
                 {tickets.map((ticket) => (
                     <Link
+                        to={`/tickets/${ticket._id}`}
                         key={ticket._id}
                         className="card shadow-md p-4 bg-gray-800"
-                        to={`/tickets/${ticket._id}`}
                     >
                         <h3 className="font-bold text-lg">{ticket.title}</h3>
                         <p className="text-sm">{ticket.description}</p>
@@ -126,7 +126,9 @@ export default function Tickets() {
                         </p>
                     </Link>
                 ))}
-                {tickets.length === 0 && <p>No tickets submitted yet.</p>}
+                {tickets.length === 0 && !loading ? (
+                    <p>No tickets submitted yet.</p>
+                ) : null}
             </div>
         </div>
     );
